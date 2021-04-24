@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-	name : {
+	name: {
 		type: String,
 		minlength: 2,
 		maxlength: 30,
-		required: true
+		required: true,
 	},
-	about : {
+	about: {
 		type: String,
 		minlength: 2,
 		maxlength: 30,
-		required: true
+		required: true,
 	},
-	avatar : {
+	avatar: {
 		type: String,
-		required: true
-	}
+		required: true,
+	},
 });
 
 module.exports = mongoose.model('user', userSchema);

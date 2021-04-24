@@ -1,3 +1,13 @@
 {
-	"extends": "airbnb-base"
+	"extends": "airbnb-base",
+	"rules": {
+		"linebreak-style": "off",
+		"indent": "off",
+		"no-tabs": "off",
+		"spaced-comment": "off",
+		"no-underscore-dangle":"off",
+		"brace-style": "off",
+		"eqeqeq": "off",
+		"no-plusplus": "off"
+	}
 }
