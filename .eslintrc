@@ -1,11 +1,6 @@
 {
 	"extends": "airbnb-base",
 	"rules": {
-		"linebreak-style": "off",
-		"indent": "off",
-		"no-tabs": "off",
-		"no-underscore-dangle":"off",
-		"brace-style": "off"
+		"no-underscore-dangle":"off"
 	}
 }
-// Все правила нужны чтобы он не показывал ошибок.
