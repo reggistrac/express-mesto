@@ -1,6 +1,38 @@
 {
 	"extends": "airbnb-base",
 	"rules": {
-		"no-underscore-dangle":"off"
+		"no-underscore-dangle":"off",
+		"no-useless-escape":"off",
+		"no-tabs":"off",
+		"indent":"off",
+		"comma-dangle":"off",
+		"linebreak-style":"off",
+		"semi":"off",
+		"key-spacing":"off",
+		"block-spacing":"off",
+		"no-else-return":"off",
+		"space-before-blocks":"off",
+		"keyword-spacing":"off",
+		"object-curly-spacing":"off",
+		"brace-style":"off",
+		"no-extra-semi":"off",
+		"semi-spacing":"off",
+		"no-mixed-spaces-and-tabs":"off",
+		"comma-spacing":"off",
+		"no-multi-spaces":"off",
+		"space-infix-ops":"off",
+		"consistent-return":"off",
+		"arrow-spacing":"off",
+		"padded-blocks":"off",
+		"quotes":"off",
+		"no-multiple-empty-lines":"off",
+		"object-curly-newline":"off",
+		"object-shorthand":"off",
+		"arrow-parens":"off",
+		"eqeqeq":"off",
+		"no-trailing-spaces":"off",
+		"import/order":"off",
+		"no-shadow":"off"
+
 	}
 }
