@@ -1,4 +1,5 @@
 const Card = require('../models/card');
+const validator = require('validator');
 
 module.exports.getAllCards = (req, res, next) => {
   Card.find({})
@@ -10,7 +11,7 @@ module.exports.getAllCards = (req, res, next) => {
 
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
-
+  if(!validator.isURL(link)){	next({statusCode:400});	}
   Card.create({ name, link, owner: req._id._id })
     .then((card) => res.send({ data: card }))
     .catch((err) => {
@@ -23,7 +24,7 @@ module.exports.deleteCard = (req, res, next) => {
 	Card.findById(req.params.cardId)
 	.then((card) => {
 		if (card != null) {
-			if(card.owner._id == req._id._id){	Card.findByIdAndRemove(req._id._id);}
+			if(card.owner.toString() === req._id._id){	Card.findByIdAndRemove(req.params.cardId).then((a)=>res.send(a));}
 			else{res.status(401).send({ message: 'Чужое!' });}
 		}
 		else { next({statusCode:404}); }
@@ -36,7 +37,7 @@ module.exports.deleteCard = (req, res, next) => {
 };
 
 module.exports.addLike = (req, res, next) => {
-  Card.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
+  Card.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req._id._id } }, { new: true })
     .then((card) => {
       if (card != null) { res.send({ data: card }); }
 	  else { next({statusCode:404}); }
@@ -48,7 +49,7 @@ module.exports.addLike = (req, res, next) => {
 };
 
 module.exports.deleteLike = (req, res, next) => {
-  Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
+  Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req._id._id } }, { new: true })
     .then((card) => {
       if (card != null) { res.send({ data: card }); }
 	  else { next({statusCode:404}); }
