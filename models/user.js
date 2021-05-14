@@ -6,43 +6,40 @@ const userSchema = new mongoose.Schema({
     type: String,
     minlength: 2,
     maxlength: 30,
-		default: 'Жак-Ив Кусто'
+    default: 'Жак-Ив Кусто',
   },
   about: {
     type: String,
     minlength: 2,
     maxlength: 30,
-		default: 'Исследователь'
+    default: 'Исследователь',
   },
   avatar: {
     type: String,
-	validate: {
-		validator(v){
-			const rege = /https?:\/\/[a-z0-9\-\.\_\~\:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+$/i;
-			const a = v.match(rege);
-			if(a){	return true;}
-			else{return false;}
-		},
-		message: 'Неправильная ссылка'
-	},
-		default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png'
+    validate: {
+      validator(v) {
+        return validator.isURL(v);
+      },
+      message: 'Неправильная ссылка',
+    },
+    default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
   },
   email: {
     type: String,
     required: true,
-	validate: {
-		validator(v){
-			return validator.isEmail(v);
-		},
-		message: 'В поле email введён не email'
-	},
-	unique: true
+    validate: {
+      validator(v) {
+        return validator.isEmail(v);
+      },
+      message: 'В поле email введён не email',
+    },
+    unique: true,
   },
   password: {
     type: String,
     required: true,
-	select: false
-  }
+    select: false,
+  },
 });
 
 module.exports = mongoose.model('user', userSchema);
