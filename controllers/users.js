@@ -60,6 +60,7 @@ module.exports.login = (req, res) => {
       }
       const token = jwt.sign({ _id: userId }, JWT_SECRET, { expiresIn: '7d' });
       res.cookie('jwt', token, { maxAge: 3600000 * 24 * 30, httpOnly: true }).status(200).send({ message: 'Ок' });
+      return 'Ok';
     })
   // Сообщение об ошибке нестандартное, отправляется здесь.
     .catch((err) => { res.status(401).send({ message: err.message }); });

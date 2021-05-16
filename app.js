@@ -48,17 +48,18 @@ app.use('/', (req, res, next) => {
 
 app.use(errors());
 app.use((err, req, res, next) => {
-  const errors = {
+  const errorss = {
     400: 'Некорректный запрос',
     401: 'Необходима авторизация',
     404: 'Такого не существует',
     409: 'Такой пользователь уже есть',
   };
   let message;
-  if (err.errMess) { message = err.errMess; } else { message = errors[err.statusCode]; }
+  if (err.errMess) { message = err.errMess; } else { message = errorss[err.statusCode]; }
   if (err.statusCode) {
     res.status(err.statusCode).send({ message });
   } else { res.status(500).send({ message: err.message }); }
+  next();
 });
 
 app.listen(PORT);
